@@ -52,4 +52,4 @@ createdAt:{
 }
 })
 const userModel= mongoose.model("User",messageschmea)
-module.exports= userModel
+export default userModel
