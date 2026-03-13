@@ -9,7 +9,9 @@ export async function POST(request) {
 
   try {
     const { username, email, password } = await request.json();
+  
 
+    
     // Check if username already exists and verified
     const existingVerifiedUser = await User.findOne({ username, isVerified: true });
     if (existingVerifiedUser) {
@@ -18,7 +20,7 @@ export async function POST(request) {
         { status: 400 }
       );
     }
-    
+
 
     // Check if email already exists
     const existingUserByEmail = await User.findOne({ email });
