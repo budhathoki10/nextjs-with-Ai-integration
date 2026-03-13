@@ -11,7 +11,7 @@ export async function POST(request) {
     const { username, email, password } = await request.json();
   
 
-    
+
     // Check if username already exists and verified
     const existingVerifiedUser = await User.findOne({ username, isVerified: true });
     if (existingVerifiedUser) {
@@ -34,6 +34,8 @@ export async function POST(request) {
       existingUserByEmail.verifyCodeExpiry = new Date(Date.now() + 3600000);
       await existingUserByEmail.save();
 
+
+      
       const emailResponse = await sendVerificationEmail(email, username, verifyCodeOTP);
       if (!emailResponse.success) {
         return NextResponse.json({ message: emailResponse.message }, { status: 500 });
