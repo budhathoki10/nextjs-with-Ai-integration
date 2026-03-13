@@ -18,6 +18,7 @@ export async function POST(request) {
         { status: 400 }
       );
     }
+    
 
     // Check if email already exists
     const existingUserByEmail = await User.findOne({ email });
