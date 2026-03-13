@@ -11,6 +11,7 @@ export default function Component() {
         <button onClick={() => signOut()}>Sign out</button>
       </>
     )
+    
   }
   return (
     <>

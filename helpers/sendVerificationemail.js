@@ -7,6 +7,7 @@ const sendVerificationEmail = async (email, username, verifycode) => {
     await resend.emails.send({
       from: "budhathokikushal170@gmail.com",
       to: email,
+      
       subject: "OTP verification",
       react: VerificationEmail({ username, otp: verifycode }),
     });

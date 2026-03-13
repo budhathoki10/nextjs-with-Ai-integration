@@ -49,6 +49,7 @@ createdAt:{
     type:Date,
     required:true,
     default:Date.now
+    
 }
 })
 const userModel= mongoose.model("User",messageschmea)
