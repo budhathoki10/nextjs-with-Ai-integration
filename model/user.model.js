@@ -6,6 +6,7 @@ content:{
     type:String,
     required:true
 },
+
 username:{
     type:String,
     required:[true,"Username is required"],
@@ -49,7 +50,7 @@ createdAt:{
     type:Date,
     required:true,
     default:Date.now
-    
+
 }
 })
 const userModel= mongoose.model("User",messageschmea)
