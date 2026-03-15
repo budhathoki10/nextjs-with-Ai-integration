@@ -3,8 +3,7 @@ import mongoose, { Schema } from "mongoose";
 
 const messageschmea= new Schema({
 content:{
-    type:String,
-    required:true
+    type:String
 },
 
 username:{
@@ -12,12 +11,12 @@ username:{
     required:[true,"Username is required"],
     trim:true
 },
-email:{
-    type:String,
-    required:[true,"email is required"],
-    trim:true,
-    unique:true,
-    match:[,"please use a valid email address"]
+email: {
+  type: String,
+  required: [true, "Email is required"],
+  trim: true,
+  unique: true,
+  match: [/^\S+@\S+\.\S+$/, "Please use a valid email address"]
 },
 password:{
     type:String,
@@ -53,5 +52,5 @@ createdAt:{
 
 }
 })
-const userModel= mongoose.model("User",messageschmea)
-export default userModel
+const userModel = mongoose.models.User || mongoose.model("User", messageschmea);
+export default userModel;

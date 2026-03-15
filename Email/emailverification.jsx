@@ -10,12 +10,9 @@ import {
   Button,
 } from '@react-email/components';
 
-interface VerificationEmailProps {
-  username: string;
-  otp: string;
-}
 
-export default function VerificationEmail({ username, otp }: VerificationEmailProps) {
+
+const  VerificationEmail=({ username, otp }) =>{
   return (
     <Html lang="en" dir="ltr">
       <Head>
@@ -64,3 +61,4 @@ export default function VerificationEmail({ username, otp }: VerificationEmailPr
     </Html>
   );
 }
+export default VerificationEmail
