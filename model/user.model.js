@@ -40,17 +40,18 @@ isexceptingMessage:{
     default:true
 },
 Message:[
-   {
+   content= {
     type:String
-   }
-],
-
-createdAt:{
+   },
+   createdAt= {
     type:Date,
     required:true,
     default:Date.now
 
 }
+]
+
+
 })
 const userModel = mongoose.models.User || mongoose.model("User", messageschmea);
 export default userModel;

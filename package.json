@@ -9,12 +9,16 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@ai-sdk/react": "^3.0.118",
+    "@google/generative-ai": "^0.24.1",
     "@react-email/components": "^1.0.9",
+    "ai": "^2.2.26",
     "bcryptjs": "^3.0.3",
     "mongoose": "^9.3.0",
     "next": "16.1.6",
     "next-auth": "^4.24.13",
     "nodemailer": "^7.0.13",
+    "openai": "^6.29.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "resend": "^6.9.3",

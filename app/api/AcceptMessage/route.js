@@ -63,7 +63,7 @@ const session= await getServerSession(authOptions)
 // console.log(session)
 // console.log("hello")
 const user= session?.user
-const UserID= user.id
+const UserID= user._id
 if(!session || !session.user){
     return NextResponse.json(
             { message: "Not authenticated user " },
