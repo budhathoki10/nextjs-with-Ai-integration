@@ -40,15 +40,15 @@ isexceptingMessage:{
     default:true
 },
 Message:[
-   content= {
+   {content:{
     type:String
    },
-   createdAt= {
+   createdAt:{
     type:Date,
     required:true,
     default:Date.now
 
-}
+}}
 ]
 
 
