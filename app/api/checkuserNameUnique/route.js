@@ -2,7 +2,9 @@
 import {success, z} from 'zod'
 import connectToDatabase from '../../../lib/dbconnect'
 import userModel from '../../../model/user.model'
-import validateUsername from "../../../Schema/signupSchema"
+import { validateUsername } from '../../../Schema/validateUsername'
+
+
 
 // import { useSearchParams } from 'next/navigation'
 
@@ -45,7 +47,7 @@ if(userName){
     return Response.json({
         sucess:false,
         message:"user name is already taken"},{
-        status:400
+        status:200
     })
 }
 else{

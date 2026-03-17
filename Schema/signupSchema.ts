@@ -1,25 +1,8 @@
-import {z} from 'zod'
- const validateUsername= 
-z.string()
-.min(2,"user name must have atleast 2 characters")
-.max(20,"user name must not be more than 20 chars")
-.regex(/^[A-Za-z0-9_]+$/,"User name must not contain special chars")
+import { z } from "zod"
+import { validateUsername } from "./validateUsername"
 
-export const SignupSchema= 
-// we have to check multiple value such as email pass so we are making password
-z.object({
-
-username:validateUsername,
-email:z.string().email({message:"invalid email"}),
-password:z.string().min(6, {message:"password must be atleast 6 chars"})
-
-
-
-
-
-
-
+export const SignupSchema = z.object({
+  username: validateUsername,
+  email: z.string().email("invalid email"),
+  password: z.string().min(6, "password must be at least 6 chars"),
 })
-
-
-export default validateUsername

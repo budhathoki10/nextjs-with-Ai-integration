@@ -14,7 +14,7 @@ try {
     const user= await userModel.findOne({username:decodeduserName})
     if(!user){
         return Response.json({
-        message:"user not found",
+        message:"user not founds",
         success:false
     },{
         status:400
@@ -38,15 +38,15 @@ await user.save();
     }
     else if(!isdateExpiryornot){
     return Response.json({
-        message:"code is expired",
+        message:"code is expired, please signup again",
         success:false
     },{
         status:400
     })
     }
-    else{
+    else if(!isValidcode){
          return Response.json({
-        message:"incorrect code",
+        message:"incorrect OTP code try again!!!",
         success:false
     },{
         status:400
