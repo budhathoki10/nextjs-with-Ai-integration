@@ -19,7 +19,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 
-const Page = () => {
+const SignUP = () => {
   const [userNameMessage, setUserNameMessage] = useState("")
   const [isCheckingUsername, setIsCheckingUsername] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -175,4 +175,4 @@ const form = useForm({
   )
 }
 
-export default Page
+export default SignUP

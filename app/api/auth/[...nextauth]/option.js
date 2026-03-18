@@ -4,7 +4,7 @@ import Connectiondatabase from "../../../../lib/dbconnect"
 import userModel from "../../../../model/user.model"
 import GoogleProvider from "next-auth/providers/google";
 
-export const authOptions = {
+export const authOptions  = {
   providers: [
     CredentialsProvider({
       id: "credentials",
@@ -25,11 +25,11 @@ export const authOptions = {
           });
 
           if (!user) {
-            throw new Error("No user found with this email/username");
+            throw  Error("No user found with this email/username");
           }
 
           if (!user.isVerified) {
-            throw new Error("Please verify your account first");
+            throw  Error("Please verify your account first");
           }
 
           const isPasswordCorrect = await bcrypt.compare(
