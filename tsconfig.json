@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-, "model/user.model.js", "lib/dbconnect.js", "types/ApiResponse.js", "app/(app)/layout.js", "app/(app)/page.tsx", "Email/emailverification.jsx", "app/(auth)/sign-up/page.jsx"  ],
+, "model/user.model.js", "lib/dbconnect.js", "types/ApiResponse.js", "app/(app)/layout.js", "app/(app)/page.tsx", "Email/emailverification.jsx", "app/(auth)/sign-up/page.jsx", "components/ui/MessageCard.js"  ],
   "exclude": ["node_modules"]
 }

@@ -41,9 +41,11 @@ export const authOptions  = {
             throw new Error("Incorrect password");
           }
 
+          console.log("user is",user)
           return user;
         } catch (error) {
-          console.error(error);
+
+          console.log("thu")
           return null;
         }
       },

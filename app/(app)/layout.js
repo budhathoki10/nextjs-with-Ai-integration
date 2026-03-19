@@ -1,22 +1,16 @@
-import { Roboto } from "next/font/google"
-import NavBar from "../../components/Navbar"
-import Cardmessages from "../../components/Cardmessages"
-// import './global.css'
+import { Roboto } from "next/font/google";
+import NavBar from "../../components/Navbar";
+
 const roboto = Roboto({
   weight: "400",
   subsets: ["latin"],
-})
+});
 
-export default function RootLayout({ children }) {
+export default function Layout({ children }) {
   return (
-    <html lang="en">
-      <body className={roboto.className}>
-
-          <NavBar></NavBar>
-          {/* <Cardmessages></Cardmessages> */}
-          {children}
-
-      </body>
-    </html>
-  )
+    <div className={roboto.className}>
+      <NavBar />
+      {children}
+    </div>
+  );
 }

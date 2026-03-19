@@ -12,7 +12,7 @@ try {
             { 
                 sucess:false,
                 message: 'user not found' },
-            { status: 401 }
+            { status: 400 }
           );
     }
    if(!user.isexceptingMessage){
@@ -20,7 +20,7 @@ try {
             { 
                 sucess:false,
                 message: 'user is not accepting the messages' },
-            { status: 401 }
+            { status: 500 }
           );
    }
 

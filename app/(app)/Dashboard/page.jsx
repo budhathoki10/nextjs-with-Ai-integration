@@ -1,5 +1,4 @@
 "use client";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -7,10 +6,15 @@ import { toast } from "sonner";
 import { acceptMessageSchema } from "../../../Schema/acceptMessageSchema";
 import axios from "axios";
 import { useSession } from "next-auth/react";
-// import your UI components: Button, Switch, Separator, Loader2, RefreshCcw, MessageCard
+
+import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
+import { Separator } from "@/components/ui/separator";
+import { Loader2, RefreshCcw } from "lucide-react";
+import MessageCard from "@/components/ui/MessageCard";
 
 const Page = () => {
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([]);   // ✅ always an array
   const [loading, setLoading] = useState(false);
   const [isSwitchLoading, setIsSwitchLoading] = useState(false);
 
@@ -20,33 +24,35 @@ const Page = () => {
     resolver: zodResolver(acceptMessageSchema),
   });
 
-  const { register, watch, setValue } = form;
+  const { watch, setValue } = form;
   const acceptingMessage = watch("acceptingMessage");
 
+  // ✅ Fetch accept-message status
   const fetchAcceptMessage = useCallback(async () => {
     setIsSwitchLoading(true);
     try {
       const response = await axios.get("/api/AcceptMessage");
-      setValue("acceptingMessage", response.data.isAcceptingMessage);
-    } catch (error) {
-      if (error.response?.status >= 400) {
-        toast.error("Failed to fetch");
-      }
+      console.log("accept message response", response.data);
+      setValue("acceptingMessage", response.data.isexceptingMessage);
+    } catch {
+      toast.error("Failed to fetch message acceptance status");
     } finally {
       setIsSwitchLoading(false);
     }
   }, [setValue]);
 
+  // ✅ Fetch messages
   const fetchMessages = useCallback(async (refresh = false) => {
     setLoading(true);
     try {
       const response = await axios.get("/api/getMessage");
-      setMessages(response.data.message);
+      console.log("get message response", response.data);
+      setMessages(response.data.message || []); // ✅ safe fallback
       if (refresh) {
         toast("Refresh", { description: "Showing latest messages" });
       }
     } catch {
-      toast.error("Internal server error");
+      toast.error("Failed to fetch messages");
     } finally {
       setLoading(false);
     }
@@ -63,28 +69,34 @@ const Page = () => {
       const response = await axios.post("/api/AcceptMessage", {
         acceptingMessage: !acceptingMessage,
       });
+      console.log("response is", response.data);
       setValue("acceptingMessage", !acceptingMessage);
       toast.success(response.data.message);
     } catch {
-      toast.error("Failed to toggle");
+      toast.error(response.data.message);
     }
   };
 
   const handleDeleteMessage = (messageID) => {
     setMessages(messages.filter((e) => e._id !== messageID));
+    // optionally call DELETE API here
   };
 
-const username = session?.user?.username;
-  const baseURL= `${window.location.protocol}//${window.location.host}`
-  const profileurl= `${baseURL}/u${username}`
+  const username = session?.user?.username;
+  const [profileUrl, setProfileUrl] = useState("");
 
-  const copyToClipboard= ()=>{
-    navigator.clipboard.writeText(profileurl)
-    toast({
-      title:"url copied",
-      description:"profiel url has been copied"
-    })
-  }
+  useEffect(() => {
+    if (typeof window !== "undefined" && username) {
+      const baseURL = `${window.location.protocol}//${window.location.host}`;
+      setProfileUrl(`${baseURL}/u/${username}`);
+    }
+  }, [username]);
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(profileUrl);
+    toast.success("Profile URL copied to clipboard.");
+  };
+
   if (!session?.user) {
     return <div>Please login</div>;
   }
@@ -108,9 +120,8 @@ const username = session?.user?.username;
       </div>
 
       {/* Accept Messages Switch */}
-      <div className="mb-4">
+      <div className="mb-4 flex items-center">
         <Switch
-          {...register("acceptingMessage")}
           checked={acceptingMessage}
           onCheckedChange={handleSwitchChange}
           disabled={isSwitchLoading}
@@ -140,7 +151,7 @@ const username = session?.user?.username;
 
       {/* Messages List */}
       <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
-        {messages.length > 0 ? (
+        {Array.isArray(messages) || messages.length > 0 ? (
           messages.map((message) => (
             <MessageCard
               key={message._id}
