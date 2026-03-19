@@ -12,7 +12,7 @@ export async function POST(request) {
   
 
 
-    // Check if username already exists and verified
+
     const existingVerifiedUser = await User.findOne({ username, isVerified: true });
     if (existingVerifiedUser) {
       return NextResponse.json(
@@ -22,12 +22,12 @@ export async function POST(request) {
     }
 
 
-    // Check if email already exists
+
     const existingUserByEmail = await User.findOne({ email });
     const verifyCodeOTP = Math.floor(100000 + Math.random() * 900000).toString();
 
     if (existingUserByEmail) {
-      // Update existing user with new password + OTP
+   
       const hashedPassword = await bcrypt.hash(password, 10);
       existingUserByEmail.password = hashedPassword;
       existingUserByEmail.verifyCode = verifyCodeOTP;
@@ -47,7 +47,7 @@ export async function POST(request) {
       );
     }
 
-    // If email not found → create new user
+
     const hashed = await bcrypt.hash(password, 10);
     const expiryDate = new Date(Date.now() + 3600000);
 

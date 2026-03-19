@@ -26,7 +26,7 @@ const Navbar = () => {
           </>
         ) : (
           <>
-            <span className="mr-4">Sorry, not logged in</span>
+            <span className="mr-4"></span>
             <Link href="/sign-in" className="w-full md:w-auto">
               <Button>Login</Button>
             </Link>

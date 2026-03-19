@@ -82,7 +82,7 @@ try {
     }
     
      return NextResponse.json(
-                { sucess:false,
+                { sucess:true,
                    isexceptingMessage:foundUser.isexceptingMessage
                  },
                 { status: 200 }

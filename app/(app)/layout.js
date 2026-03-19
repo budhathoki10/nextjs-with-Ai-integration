@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
       <body className={roboto.className}>
 
           <NavBar></NavBar>
-          <Cardmessages></Cardmessages>
+          {/* <Cardmessages></Cardmessages> */}
           {children}
 
       </body>
